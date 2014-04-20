@@ -42,7 +42,7 @@ try:
 except NameError:
     WindowsError = None
 
-def copyfileobj(fsrc, fdst, update_handler, length=16*1024):
+def copyfileobj(fsrc, fdst, update_handler, length=1024*1024):
     """copy data from file-like object fsrc to file-like object fdst"""
     while 1:
         buf = fsrc.read(length)
