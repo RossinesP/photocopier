@@ -11,13 +11,13 @@ class CopyManager:
         if os.path.exists(sdcard) and os.path.isdir(sdcard):
             self.sdcard = sdcard
         else:
-            print "The folder " + sdcard + " doesn't exist"
+            print("The folder " + sdcard + " doesn't exist")
             return
 
         if os.path.exists(hdd) and os.path.isdir(hdd):
             self.hdd = hdd
         else:
-            print "The folder " + hdd + " doesn't exist"
+            print("The folder " + hdd + " doesn't exist")
             return
 
         self.screen = screen
@@ -32,13 +32,18 @@ class CopyManager:
             self.screen.clear()
             self.screen.message("Disk full")
             return
-        folder = os.path.join(self.hdd, time.strftime("%y.%m.%d %H.%M.%S"))
+        i = 0
+        path = os.path.join(self.hdd, str(i))
+        while os.path.exists(path):
+            i = i+1
+            path = os.path.join(self.hdd, str(i))
+        folder = os.path.join(self.hdd, path)
         try:
             shutil.copytree(self.sdcard, folder, self.update_copy)
         except EnvironmentError as error:
             self.screen.clear()
             self.screen.message("Copy error")
-            print "Error while copying the files: " + error.message
+            print("Error while copying the files: " + error.message)
         self.screen.clear()
         self.screen.message("Finished")
 

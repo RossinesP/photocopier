@@ -13,7 +13,7 @@ class ProgressBar:
         percentage = round((current_value * 100) / self.range)
         message = "["
         i = 0
-        for i in xrange(0, 100, 10):
+        for i in range(0, 100, 10):
             if percentage > i:
                 message = message + "="
             else:

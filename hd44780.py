@@ -11,7 +11,7 @@ from time import sleep
 
 class HD44780:
 
-    def __init__(self, pin_rs=24, pin_e=23, pins_db=[4, 17, 21, 22]):
+    def __init__(self, pin_rs=7, pin_e=8, pins_db=[25, 24, 23, 18]):
 
         self.pin_rs = pin_rs
         self.pin_e = pin_e
@@ -67,7 +67,7 @@ class HD44780:
     def message(self, text):
         """ Send string to LCD. Newline wraps to second line"""
         if DUMMY:
-            print "################\n" + text + "\n################"
+            print ("################\n" + text + "\n################")
         for char in text:
             if char == '\n':
                 self.cmd(0xC0) # next line
